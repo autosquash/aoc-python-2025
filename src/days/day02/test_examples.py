@@ -26,6 +26,9 @@ def test_b() -> None:
 def test_func_int() -> None:
     assert b.is_invalid(2323)
     assert b.is_invalid(232323)
+    assert b.is_invalid(234234234)
+    assert not b.is_invalid(2323232)
+    assert not b.is_invalid(2)
 
 
 T = TypeVar("T", int, str)
