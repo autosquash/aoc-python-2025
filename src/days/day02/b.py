@@ -1,0 +1,57 @@
+from __future__ import annotations
+import functools
+import itertools
+from pprint import pprint
+from dataclasses import dataclass, field
+from enum import Enum
+from collections import defaultdict, deque
+from pathlib import Path
+from typing import Sequence, Final, NewType
+import re
+from src.utils import *
+from .a import day_number
+from string import ascii_lowercase, ascii_uppercase
+
+# Part 2
+
+
+def solve(lines: list[str]) -> int:
+    ranges_str = lines[0].split(",")
+    acc = 0
+    for range_str in ranges_str:
+        a, b = range_str.split("-")
+        for i in range(int(a), int(b) + 1):
+            if is_invalid(i):
+                acc += i
+    solution = acc
+    return solution
+
+
+def is_invalid(n: int) -> bool:
+    """return True if is repeated m times"""
+    s = str(n)
+
+    for factor in range(2, len(s) + 1):
+        if len(s) % factor == 0:
+            chunk = len(s) // factor
+            for i in range(factor - 1):
+                start = i * chunk
+                middle = start + chunk
+                end = middle + chunk
+                if s[start:middle] != s[middle:end]:
+                    break
+            else:
+                # print(s, "is repeated")
+                return True
+    return False
+
+
+def main() -> None:
+    print("Part 2")
+    lines = read_data_from_day(day_number)
+    res = solve(lines)
+    print_solution(res)
+
+
+if __name__ == "__main__":
+    main()
