@@ -1,0 +1,26 @@
+[project]
+name = "advent-of-code-2025"
+version = "0.1.0"
+description = "Advent Of Code 2025"
+authors = [
+    { name="autosquash" , email = "49131885+autosquash@users.noreply.github.com" }
+]
+license = { text = "GPLv3" }
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+    "rich>=13.9.4"
+]
+
+[dependency-groups]
+dev = [
+    "isort>=5.13.2",
+    "mypy>=1.13.0",
+    "pytest>=8.3.3",
+    "black>=24.10.0",
+]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
